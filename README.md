@@ -1,1 +1,1 @@
-# Sudoku
+# Webpack-Boilerplate
