@@ -6,15 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Webpack Boilerplate </title>
-
+                
     <!-- Imports Stylesheets -->
     <% htmlWebpackPlugin.files.css.forEach(function(file){ %>
         <link href="<%- file %>" rel="stylesheet">
     <% }); %>
 </head>
 
-<body>
-    <h1>Hello World</h1> 
+<body class="Application" onload="load()">
+    <h1 class="Application__Title"> Sudoku </h1> 
+
+    <select name="gridSizeSelect" onchange="selectchange()">
+        <optgroup label="Grid-Sizes">
+            <option value=3 > 3x3 Grid </option>
+            <option value=4 selected> 4x4 Grid </option>
+            <option value=5 > 5x5 Grid </option>
+            <option value=6 > 6x6 Grid </option>
+            <option value=7 > 7x7 Grid </option>
+            <option value=8 > 8x8 Grid </option>
+            <option value=9 > 9x9 Grid </option>
+            <option value=10 > 10x10 Grid </option>
+        </optgroup>
+    </select>
+
+    <div class="grid">
+
+    </div>
     
     <!-- Imports Scripts -->
     <% htmlWebpackPlugin.files.js.forEach(function(file){ %>
