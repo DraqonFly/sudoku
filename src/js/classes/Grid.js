@@ -7,6 +7,26 @@ class Grid {
         this.size = 9;
     }
 
+    // Fill whole Grid
+    fillGrid = () => {
+        console.log("filling squares");
+        //Iterate each square found in this Grid.
+        [...document.getElementsByClassName('grid__square')].forEach(square => {
+            this.fillSquare(square)
+        })
+    }
+
+    // Fill a 3x3 Grid
+    fillSquare = (square) => {
+        console.log("filling new square")
+        console.log(square)
+        // Iterate each field contained in a square.
+        square.childNodes.forEach(field => {
+            console.log(field)
+        })
+        
+    }
+
     // Generate a 9x9 Grid, holding 9 3x3 squares, like a Sudoku grid, really.
     generateGrid = () => {
         let itemCount = 0;
