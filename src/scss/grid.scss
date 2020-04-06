@@ -1,25 +1,28 @@
 .grid {
     display: block;
-    margin-left: 20px;
+    margin: 0 auto;
+    width: 474px;
 
     &__square {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
         border: 1px solid rgb(199, 65, 65);
+        background: rgb(238, 185, 142);
+        color: rgb(163, 147, 126);
     }
-
+    
     &__row {
         display: flex;
     }
-
+    
     &__item {
+        border: 1px solid rgba(255, 214, 176, 0.476);
         width: 50px;
         line-height: 50px;
-        background: rgb(235, 156, 92);
-        border: 1px solid rgba(255, 214, 176, 0.476);
         text-align: center;
         font-weight: bold;
         vertical-align: center;
+        transition: .2s;
     }
 }

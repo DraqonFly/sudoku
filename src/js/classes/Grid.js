@@ -1,32 +1,76 @@
+import {Square} from "./Square.js";
+
 class Grid {
     size;
     elem;
+    squares;
 
     constructor() {
         this.elem = document.getElementsByClassName("grid")[0];
         this.size = 9;
+        this.squares = new Array();
     }
 
     // Fill whole Grid
     fillGrid = () => {
         console.log("filling squares");
         //Iterate each square found in this Grid.
-        [...document.getElementsByClassName('grid__square')].forEach(square => {
-            this.fillSquare(square)
+        [...document.getElementsByClassName('grid__square')].forEach( (square, id) => {
+            this.squares.push(new Square(square, id))
+
+            if(id < 5)
+            this.squares[id].fillSquare()
         })
+
+        this.squares.forEach(square => square.toString())
+        this.toString();
     }
 
-    // Fill a 3x3 Grid
-    fillSquare = (square) => {
-        console.log("filling new square")
-        console.log(square)
-        // Iterate each field contained in a square.
-        square.childNodes.forEach(field => {
-            console.log(field)
-        })
-        
-    }
+    // Visualize Each Group of Same Digits for 1 Second in Row.
+    visualizeUniqueFields = () => {
+        let loops = 0;
+        let colors = ["#319921", "#6cfc55"]
+        let interval = window.setInterval( () => {
+            [...document.getElementsByClassName("grid__item")].forEach(item => {
+                if(item.innerHTML === loops.toString()) {
 
+                    if(item.innerHTML === "0") {
+                        item.style.color = "pink";
+                        item.style.background = "rgb(220, 110, 90)";
+                    } else {
+                        item.style.color = colors[1];
+                        item.style.background = colors[0];
+                    }
+
+                    if(loops === 9 ) window.setTimeout(() => window.clearInterval(interval), 1000)
+                } else {
+                    if(item.style.color === "pink" ||item.style.color === "rgb(163, 147, 126)") {
+                        item.style.background = "rgb(238, 185, 142)";
+                        item.style.color =  "rgb(163, 147, 126)";
+                    } else {
+                        item.style.color = "black";
+                        item.style.background = "#eb9c5c";
+                    }
+                }
+            })
+            loops++;
+        }, 1000)
+    }
+    
+    visualizeSameRow = () => {
+        console.log("OMG")
+        let loops = 0;
+        let colors = ["#319921", "#6cfc55"]
+        let interval = window.setInterval( () => {
+            [...document.getElementsByClassName("grid__square")].forEach(item => {
+
+                if(loops === 10)
+                window.setTimeout(() => window.clearInterval(interval), 1000)
+
+            })
+            loops++;
+        }, 1000)
+    }
     // Generate a 9x9 Grid, holding 9 3x3 squares, like a Sudoku grid, really.
     generateGrid = () => {
         let itemCount = 0;
@@ -71,8 +115,6 @@ class Grid {
         }
         return node;
     }
-
-    createRandomInteger = (max) => Math.floor(Math.random() * (max)) // Create a random Integer (excluding maximum value)
 
     toString = (onlyReturn) => onlyReturn ? JSON.parse(JSON.stringify(this)) : console.log(JSON.parse(JSON.stringify(this)))
 }

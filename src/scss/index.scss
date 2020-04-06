@@ -14,4 +14,25 @@
         }
 }
 
+.buttons {
+    width: 100%;
+
+    button {
+        display: block;
+        width: 50%;
+        margin: 10px auto;
+    }
+}
+
+.btn {
+    position: block;
+    width: 158px;
+    margin-right: -110px;
+    height: 20px;
+    font-size: 10.25px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
 @import "./grid";

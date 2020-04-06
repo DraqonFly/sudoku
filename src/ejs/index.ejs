@@ -17,9 +17,13 @@
     <h1 class="Application__Title"> Sudoku </h1> 
 
     <div class="grid">
-
+        <!-- Generated in Javascript -->
     </div>
     
+    <div class="buttons">
+        <button onclick="onClick('visualizeUniqueDigits')"> Visualize unique digits </button>
+    </div>
+
     <!-- Imports Scripts -->
     <% htmlWebpackPlugin.files.js.forEach(function(file){ %>
         <script src="<%- file %>"></script>
