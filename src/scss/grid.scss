@@ -1,16 +1,25 @@
 .grid {
-    display: flex;
-    margin-left: 20px;
-}
-.grid__row {
     display: block;
-}
-.grid__item {
-    width: 50px;
-    line-height: 50px;
-    background: rgb(235, 156, 92);
-    border: 1px solid rgba(255, 214, 176, 0.476);
-    text-align: center;
-    font-weight: bold;
-    vertical-align: center;
+    margin-left: 20px;
+
+    &__square {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        border: 1px solid rgb(199, 65, 65);
+    }
+
+    &__row {
+        display: flex;
+    }
+
+    &__item {
+        width: 50px;
+        line-height: 50px;
+        background: rgb(235, 156, 92);
+        border: 1px solid rgba(255, 214, 176, 0.476);
+        text-align: center;
+        font-weight: bold;
+        vertical-align: center;
+    }
 }
