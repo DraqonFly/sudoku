@@ -1,19 +1,19 @@
 import "../scss/index.scss";
 import {grid as Grid} from "./classes/Grid.js";
+import {gridDebugger as GridDebugger} from "./classes/GridDebugger.js";
 
-window.load = () => {
     Grid.generateGrid();
     Grid.fillGrid();
-}
+
 
 window.onClick = (e, param) => {
     console.log("onclick")
     e = e ?? window.event;
     
     if(param === "visualizeUniqueDigits") {
-        Grid.visualizeUniqueFields();
+        GridDebugger.visualizeUniqueFields();
     }
     if(param === "visualizeSameRow") {
-        Grid.visualizeSameRow(window.event.target.parentNode);
+        GridDebugger.visualizeSameRow(window.event.target.parentNode);
     }
 }
