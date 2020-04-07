@@ -1,4 +1,5 @@
 import {grid as Grid} from "./Grid";
+import "../index.js";
 
 export class Square {
     elem;
@@ -37,7 +38,7 @@ export class Square {
         btn.innerHTML = "Visualize Square neighbours";                   // Insert text
         btn.classList.add('btn');
         btn.onclick = function() {
-            Grid.visualizeSameRow();
+            onClick(window.event.target, "visualizeSameRow");
         }
         this.elem.appendChild(btn);               // Append <button> to <body>
 

@@ -6,12 +6,14 @@ window.load = () => {
     Grid.fillGrid();
 }
 
-window.onClick = (param) => {
+window.onClick = (e, param) => {
+    console.log("onclick")
+    e = e ?? window.event;
+    
     if(param === "visualizeUniqueDigits") {
         Grid.visualizeUniqueFields();
     }
     if(param === "visualizeSameRow") {
-        console.log("ya")
-        Grid.visualizeSameRow();
+        Grid.visualizeSameRow(window.event.target.parentNode);
     }
 }

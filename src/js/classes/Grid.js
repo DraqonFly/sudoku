@@ -4,6 +4,7 @@ class Grid {
     size;
     elem;
     squares;
+    target;
 
     constructor() {
         this.elem = document.getElementsByClassName("grid")[0];
@@ -57,20 +58,46 @@ class Grid {
         }, 1000)
     }
     
-    visualizeSameRow = () => {
-        console.log("OMG")
+    visualizeSameRow = (targetSquare) => {
+        targetSquare.style.background = "rgb(190, 110, 90)";
+        targetSquare.style.color = "whitesmoke";
+        
+        let squareClass;
+        this.squares.forEach((square, id) => {
+            if(square.elem === targetSquare)
+            squareClass = square;
+        })
+
         let loops = 0;
         let colors = ["#319921", "#6cfc55"]
         let interval = window.setInterval( () => {
-            [...document.getElementsByClassName("grid__square")].forEach(item => {
+            if(this.squares[loops])
+            if(this.squares[loops].elem === targetSquare ||loops >= squareClass.id) {
+                window.setTimeout( () =>{
 
-                if(loops === 10)
-                window.setTimeout(() => window.clearInterval(interval), 1000)
-
-            })
+                    console.warn("END")
+                    this.squares.forEach((square, id) => {
+                        if(id <= squareClass.id){
+                            square.elem.style.background = "#eb9c5c";
+                            square.elem.style.color = "black";
+                        }
+                    }, window.clearInterval(interval))
+                }, 3000)
+            }
+            else {
+                console.log("square-"+loops);
+                let horizontalNeighbourFound = ((squareClass.id % 3 >= loops % 3) && ((loops + 3) > squareClass.id) );
+                let verticalNeightbourFound = (squareClass.id % 3 === loops % 3);
+                if(horizontalNeighbourFound || verticalNeightbourFound) {
+                    this.squares[loops].elem.style.background = "rgb(255, 110, 90)";
+                    this.squares[loops].elem.style.color = "white";
+                }
+            }
             loops++;
-        }, 1000)
+        }, 300)
     }
+
+
     // Generate a 9x9 Grid, holding 9 3x3 squares, like a Sudoku grid, really.
     generateGrid = () => {
         let itemCount = 0;
