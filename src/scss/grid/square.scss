@@ -1,0 +1,47 @@
+.square {
+    background: rgb(90, 90, 90);
+    padding: 2px;
+    border-radius: 10px;
+}
+.square.grid.top.left {
+    border-top-left-radius: 10px;
+}
+.square.grid.top.right {
+    border-top-right-radius: 10px;
+}
+.square.grid.bot.left {
+    border-bottom-left-radius: 10px;
+}
+.square.grid.bot.right {
+    border-bottom-right-radius: 10px;
+}
+
+.square.neighbour.red {
+    background: rgb(179, 117, 117);
+    width: auto;
+    margin: 0;
+    padding: 0;
+    .field {
+        background: rgb(199, 85, 77);
+    }
+}
+.square.neighbour.green {
+    background: rgb(164, 179, 117);
+    .field {
+        background: rgb(100, 200, 130);
+    }
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+.square.target {
+    background: rgb(182, 142, 8);
+    .field {
+        background: rgb(187, 200, 100);
+    }
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+@import "./field";

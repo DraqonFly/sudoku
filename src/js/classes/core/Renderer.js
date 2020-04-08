@@ -1,0 +1,77 @@
+import {SquareClass} from "../dom/Square.js";
+import {FieldClass} from "../dom/Field.js";
+import {GridInstance} from "../dom/Grid";
+
+class RendererClass 
+{
+    squares;
+    fields;
+
+    constructor()
+    {
+        this.squares = new Array();
+        this.fields = new Array();
+    }
+
+    renderGrid = () => {
+        let squareJSON = {
+            nodeName: "div",
+            classes: ["square", "grid"],
+        }
+        let fieldJSON = {
+            nodeName: "div",
+            textNode: "0",
+            classes: ["field"],
+        }
+
+        for(let squareCount=0; squareCount<9; squareCount++){
+            let squareElement = this.createElement(document.getElementById("grid"), squareJSON);
+            this.getSquarePosition(squareCount);
+            this.squares.push(new SquareClass(squareElement, squareCount, document.getElementById("grid"), this.squares, this.fields));
+
+            for(let fieldCount=0; fieldCount<9; fieldCount++) {
+                let fieldElement = this.createElement(document.getElementsByClassName("square")[squareCount], fieldJSON);
+                this.fields.push(new FieldClass(fieldElement, fieldCount, document.getElementById("grid"), squareElement, this.squares, this.fields))
+            }
+        }
+        GridInstance.squareClasses = this.squares;
+        GridInstance.fieldClasses = this.fields;
+    }
+
+    getSquarePosition = (squareCount) => {
+        switch(squareCount) {
+            case 0: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "top left"]); break;
+            case 1: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "top mid"]); break;
+            case 2: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "top right"]); break; 
+            case 3: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "center left"]); break;
+            case 4: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "center mid"]); break;
+            case 5: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "center right"]); break;
+            case 6: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "bot left"]); break;
+            case 7: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "bot mid"]); break;
+            case 8: this.appendClasses(document.getElementsByClassName("square")[squareCount], ["square", "grid", "bot right"]); break;
+        }
+    }
+
+    createElement = (parentElement, elementJSON) => {
+        let element = document.createElement(elementJSON.nodeName);
+        elementJSON.textNode ? this.createNode(element, elementJSON.textNode) : null;
+        elementJSON.classes ? this.appendClasses(element, elementJSON.classes) : null;
+        this.appendChild(parentElement, element);
+        return element;
+    }
+
+    createNode = (element, text) => {
+        let textNode = document.createTextNode(text);
+        this.appendChild(element, textNode);
+    }
+
+    appendClasses = (element, classes) => {
+        element.classList = classes.join(" ");
+    }
+
+    appendChild = (parent, child) => {
+        parent.appendChild(child);
+    }
+}
+
+export let RendererInstance = new RendererClass();

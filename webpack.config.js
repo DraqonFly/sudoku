@@ -11,6 +11,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const StaticSiteGeneratorPlugin = require("static-site-generator-webpack-plugin");
 
 module.exports = (env, argv) => {
+    
   const isDev = argv.mode === "development";
 
   const htmlWebPackPlugin = new HtmlWebPackPlugin({
@@ -39,6 +40,11 @@ module.exports = (env, argv) => {
 
   return {
       entry: "./src/js/index.js",
+      devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 4200
+      },
       output: {
           libraryTarget: "umd",
           publicPath: PUBLIC_PATH

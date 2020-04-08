@@ -1,0 +1,25 @@
+#debugMenu {
+
+    margin: 10px 0;
+    display: none;
+    padding: 10px;
+    border-radius: 6px;
+    background: rgb(98, 98, 98);
+    width: 232px;
+    box-shadow: 2px 2px 5px 5px rgba(24, 24, 24, 0.7);
+}
+.neighbour {
+    color: red;
+    margin: 10px 0;
+    width: 200px;
+    padding: 3px 10px 10px 10px;
+    border-radius: 6px;
+    background: rgb(112, 112, 112);
+}
+.control {
+    margin-left: 0;
+}
+            .digits {
+                margin-top: -3px;
+                margin-left: 12px;
+            }

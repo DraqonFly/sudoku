@@ -1,32 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>    
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Webpack Boilerplate </title>
-                
+    <title> Sudoku </title>
+
     <!-- Imports Stylesheets -->
     <% htmlWebpackPlugin.files.css.forEach(function(file){ %>
-        <link href="<%- file %>" rel="stylesheet">
+    <link href="<%- file %>" rel="stylesheet">
     <% }); %>
 </head>
 
 <body class="Application">
-    <h1 class="Application__Title"> Sudoku </h1> 
+    <header>
+        <h1 class="Application__Title"> Sudoku </h1>
+        <button class="control options toggle" onclick="onDebugButtonClick()"> Enter Debug Mode </button>
+    </header>
 
-    <div class="grid">
-        <!-- Generated in Javascript -->
-    </div>
-    
-    <div class="buttons">
-        <button onclick="onClick(window.event, 'visualizeUniqueDigits')"> Visualize unique digits </button>
-    </div>
+    <main>
+
+        <!-- Generated in Javascript (Renderer.js) -->
+        <div id="grid" class="grid"> </div>
+    </main>
+
+    <footer>
+        <div id="debugMenu">
+            <button class="control options digits" onclick="onDebugButtonClick('digitsAll')"> Visualize all Same Digits </button>
+            <div class="neighbour">
+                <button class="control options" onclick="onDebugButtonClick('squares')"> Visualize Neighour Squares </button>
+                <select id="squareSelect" class="control">
+                    <option value="0"> Square 0 </option>
+                    <option value="1"> Square 1 </option>
+                    <option value="2"> Square 2 </option>
+                    <option value="3"> Square 3 </option>
+                    <option value="4"> Square 4 </option>
+                    <option value="5"> Square 5 </option>
+                    <option value="6"> Square 6 </option>
+                    <option value="7"> Square 7 </option>
+                    <option value="8"> Square 8 </option>
+                </select>
+            </div>
+        </div>
+    </footer>
 
     <!-- Imports Scripts -->
     <% htmlWebpackPlugin.files.js.forEach(function(file){ %>
-        <script src="<%- file %>"></script>
+    <script src="<%- file %>"></script>
     <% }); %>
 </body>
 

@@ -1,0 +1,26 @@
+.--active {
+    box-shadow: inset 0px 0px 2px 2px rgb(76, 8, 8), 2px 2px 6px 2px rgba(24, 0, 0, 0.516);
+    background-color: rgb(46, 8, 8);
+    border: 1px solid rgb(50, 30, 20);
+    color: rgb(253, 60, 60);
+    cursor: pointer;
+    margin-left: auto;
+
+    &:hover {
+        box-shadow: inset 0px 0px 2px 2px rgba(112, 22, 22, 0.578), 2px 2px 6px 2px rgba(102, 19, 19, 0.326);
+        background-color: rgba(77, 20, 20, 0.666);
+        color: rgba(255, 0, 0, 0.693);
+        cursor: pointer;
+    }
+    
+    &:active {
+        box-shadow: inset 0px 0px 2px 2px rgb(188, 87, 87), 2px 2px 6px 2px rgba(18, 1, 56, 0.516);
+        background-color: rgb(255, 100, 100);
+        color: rgb(255, 182, 182);
+        cursor: pointer;
+    }
+}
+
+.focus {
+    background: red;
+}
