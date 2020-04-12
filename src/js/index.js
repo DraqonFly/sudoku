@@ -5,7 +5,6 @@ import {EventHandlerInstance} from "./eventHandler";
 import {VisualizerInstance} from "./classes/helper/Visualizer";
 
 RendererInstance.renderGrid();
-console.log(RendererInstance.fields)
 
 window.onDebugButtonClick = (param) => {
     EventHandlerInstance.onDebugButtonClick(param);
@@ -13,6 +12,7 @@ window.onDebugButtonClick = (param) => {
 
 VisualizerInstance.setClasses(RendererInstance.squares, RendererInstance.fields);
 
-GeneratorInstance.setSquares(RendererInstance.squares); 
+GeneratorInstance.setSquaresAndFields(RendererInstance.squares, RendererInstance.fields); 
 GeneratorInstance.startGeneration(); 
+
 GeneratorInstance.toString();

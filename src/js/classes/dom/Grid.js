@@ -10,7 +10,6 @@ export class GridClass
         this.gridElem = gridElem;
         this.squareClasses = squareClasses;
         this.fieldClasses = fieldClasses;
-        console.log(this)
     }
     
     toString = () => {

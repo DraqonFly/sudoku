@@ -2,6 +2,7 @@ export class FieldClass
 {
     fieldElem;
     fieldID;
+    value;
 
     gridElem;
     squareElem;
@@ -16,7 +17,12 @@ export class FieldClass
         this.fieldID = fieldID;
         this.squareClasses = squareClasses;
         this.fieldClasses = fieldClasses;
-        console.log(this)
+        this.value = parseInt(this.fieldElem.innerHTML, 10);
+    }
+
+    updateValue = (value) => {
+        this.value = value;
+        this.fieldElem.innerHTML = value; 
     }
 
     toString = () => {
