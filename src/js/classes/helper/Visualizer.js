@@ -72,6 +72,11 @@ class VisualizerClass
             squareCount++;
         }, this.intervalDuration)
     }
+
+    toString = () => {
+        console.log(JSON.parse(JSON.stringify(this)));
+        return JSON.parse(JSON.stringify(this));
+    }
 }
 
 export let VisualizerInstance = new VisualizerClass();

@@ -26,6 +26,11 @@ class EventHandlerClass
             document.getElementById("debugMenu").style.display = "none";
         }
     }
+
+    toString = () => {
+        console.log(JSON.parse(JSON.stringify(this)));
+        return JSON.parse(JSON.stringify(this));
+    }
 }
 
 export let EventHandlerInstance = new EventHandlerClass();

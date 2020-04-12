@@ -72,6 +72,11 @@ class RendererClass
     appendChild = (parent, child) => {
         parent.appendChild(child);
     }
+
+    toString = () => {
+        console.log(JSON.parse(JSON.stringify(this)));
+        return JSON.parse(JSON.stringify(this));
+    }
 }
 
 export let RendererInstance = new RendererClass();

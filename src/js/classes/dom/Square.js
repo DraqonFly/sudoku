@@ -20,4 +20,9 @@ export class SquareClass
         this.verPosition = Math.floor(this.squareID / 3);
         console.log(this)
     }
+
+    toString = () => {
+        console.log(JSON.parse(JSON.stringify(this)));
+        return JSON.parse(JSON.stringify(this));
+    }
 }
