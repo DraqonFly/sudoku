@@ -13,18 +13,25 @@
     <% }); %>
 </head>
 
+
+
 <body class="Application">
+
+
+    <!-- App Title and Debug Mode Toggle -->
     <header>
         <h1 class="Application__Title"> Sudoku </h1>
         <button class="control options toggle" onclick="onDebugButtonClick()"> Enter Debug Mode </button>
     </header>
 
-    <main>
 
-        <!-- Generated in Javascript (Renderer.js) -->
+    <!-- Generated in Javascript (Renderer.js) -->
+    <main>
         <div id="grid" class="grid"> </div>
     </main>
 
+
+    <!-- Two Debug Mode Options -->
     <footer>
         <div id="debugMenu">
             <button class="control options digits" onclick="onDebugButtonClick('digitsAll')"> Visualize all Same Digits </button>
@@ -44,6 +51,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- Imports Scripts -->
     <% htmlWebpackPlugin.files.js.forEach(function(file){ %>

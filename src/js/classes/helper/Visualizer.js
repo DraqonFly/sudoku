@@ -15,7 +15,6 @@ class VisualizerClass
         this.squareClasses = squareClasses;
         this.fieldClasses = fieldClasses;
         this.intervalDuration = 1000;
-        console.log("this");
     }
 
     visualizeAllSameDigits = () => {
