@@ -15,3 +15,4 @@ VisualizerInstance.setClasses(RendererInstance.squares, RendererInstance.fields)
 GeneratorInstance.setSquaresAndFields(RendererInstance.squares, RendererInstance.fields); 
 GeneratorInstance.startGeneration(); 
 
+GeneratorInstance.toString();
