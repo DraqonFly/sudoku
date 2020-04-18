@@ -1,9 +1,12 @@
 @import "./reset";
 
 body {
-    background: rgb(41, 43, 46);
+    background: rgb(78,78,78);
+    background: linear-gradient(300deg, rgba(78,78,78,1) 0%, rgba(42,42,42,1) 50%, rgba(32,32,32,1) 100%);
     color: rgb(180, 181, 182);
     padding: 0 10px;
+    min-height: 100vH;
+    height: 100%;
 }
 header {
     display: flex;

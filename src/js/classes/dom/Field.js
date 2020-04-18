@@ -12,7 +12,7 @@ export class FieldClass
         this.value = parseInt(this.fieldElem.innerHTML, 10);
         this.horPosition = this.fieldID % 3;
         this.verPosition = Math.floor(this.fieldID / 3);
-    }
+     }
 
     updateValue = (value) => {
         this.value = value;

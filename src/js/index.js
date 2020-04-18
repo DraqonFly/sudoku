@@ -1,6 +1,6 @@
 import "../scss/index.scss";
 import {RendererInstance} from "./classes/core/Renderer";
-import {GeneratorInstance} from "./classes/core/Generator";
+import {GeneratorClass} from "./classes/core/Generator";
 import {EventHandlerInstance} from "./eventHandler";
 import {VisualizerInstance} from "./classes/helper/Visualizer";
 
@@ -12,7 +12,7 @@ window.onDebugButtonClick = (param) => {
 
 VisualizerInstance.setClasses(RendererInstance.squares, RendererInstance.fields);
 
-GeneratorInstance.setSquaresAndFields(RendererInstance.squares, RendererInstance.fields); 
+let GeneratorInstance = new GeneratorClass(RendererInstance.squares, RendererInstance.fields)
 GeneratorInstance.startGeneration(); 
 
 GeneratorInstance.toString();

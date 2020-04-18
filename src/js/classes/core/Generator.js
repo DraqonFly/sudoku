@@ -1,81 +1,63 @@
-class GeneratorClass {
-    elements;
-    targetSquare;
-    targetField;
+export class GeneratorClass {
     unblockedFields;
+    squares;
+    fields;
 
-    constructor() {
+    constructor(squares, fields) {
         console.log("Generator constructed");
-        this.targetSquare = null;
-        this.targetField = null;
+        this.squares = squares;
+        this.fields = fields;
         this.unblockedFields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     }
     
     startGeneration = () => {
-        console.log("%c[Generator] Start Generation", "color: rgb(111, 150, 255)")
-        this.generateNumberInCycle(1);
-        this.generateNumberInCycle(2);
-        this.generateNumberInCycle(3);
+        console.log("%c[Generator] Start Generation", "color: rgb(160, 180, 255)")
+        let map = this.generate3x3Map();
+        this.iterateSquares(map);
     }
 
-    generateNumberInCycle = (cycleID) => {
-        this.moveToSquare(0);
-        let lastFieldPos = this.selectFieldFromFirstSquare();
-        this.moveToField(cycleID);
-        this.fillDigitIntoSquare(1);
-        this.fillDigitIntoSquare(2);
-        this.fillDigitIntoSquare(3);
-        this.fillDigitIntoSquare(4);
-        this.fillDigitIntoSquare(5);
-        this.fillDigitIntoSquare(6);
-        this.fillDigitIntoSquare(7);
-        this.fillDigitIntoSquare(8);
+
+
+
+
+    generate3x3Map = () => {
+        let possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let valueMap = new Array();
+
+        for(let fieldCount=0; fieldCount<9; fieldCount++){
+            let valueIndex = possibleValues.indexOf(possibleValues[this.getRandomNumber(possibleValues.length)]);
+            let value = possibleValues[valueIndex];
+            valueMap.push(parseInt(possibleValues.splice(valueIndex, 1).join(" ")));
+            this.fields[fieldCount].updateValue(value);
+            console.log(this.fields[valueIndex])
+        }
+        console.log(valueMap)
+        return valueMap;
     }
-    
-    
-    setSquaresAndFields = (squares, fields) => {
-        this.elements = {
-            squares: squares,
-            fields: fields
+
+
+    iterateSquares = (valueMap) => {
+        for(let squareCount=0; squareCount<9; squareCount++){
+            console.log("\niterating new square");
+            this.iterateFields(squareCount, valueMap);
+
         }
     }
-    
-    selectFieldFromFirstSquare = () => {
-        let fieldPosition = this.getRandomNumber(this.unblockedFields.length);
 
-        let field = this.elements.fields[(this.targetSquare.squareID * 9) + this.unblockedFields[fieldPosition]];
-        field.updateValue(this.unblockedFields[fieldPosition] + 1);
-        
-        
-        this.unblockedFields.splice(this.unblockedFields.indexOf(this.unblockedFields[fieldPosition]), 1)
-        console.log(this.unblockedFields)
-        field.toString();
-        return fieldPosition;
-    }
-
-    fillDigitIntoSquare = (squareID, pos) => {
-        this.moveToSquare(squareID);
-        let targetFieldCopy = JSON.parse(JSON.stringify(this.targetField));
-        if(targetFieldCopy.value === 0) console.log("%cfill "+targetFieldCopy.value, "color: rgb(255, 120, 120)")
-        else console.log("%cfill "+targetFieldCopy.value, "color: rgb(120, 210, 120)")
-        
-        if(squareID % 3 === 0 && squareID !== 0){
-            this.moveToField(((targetFieldCopy.fieldID + 3) + 1) % 9);
-        } else {
-            this.moveToField((targetFieldCopy.fieldID + 3) % 9);
+    iterateFields = (squareCount, valueMap) => {
+        for(let fieldCount=0; fieldCount<9; fieldCount++){
+            console.log("%c[hmm] "+(valueMap[(((squareCount * 9) + (fieldCount + 3)) % 9)]), "color: orange")
+            let globalFieldCount = (squareCount * 9) + fieldCount;
+            let fieldClass = this.fields[globalFieldCount];
+            console.log("iterating new field in square-"+squareCount)
+            console.log(fieldClass);
         }
-
-        this.targetField.updateValue(targetFieldCopy.value);
     }
-    
-    moveToSquare = (id) => this.targetSquare = this.elements.squares[id];
-    
-    moveToField = (id) => this.targetField = this.elements.fields[(this.targetSquare.squareID * 9) + id];
+
+
+
 
     getRandomNumber = (max) => Math.floor(Math.random() * max)
 
-
     toString = () => console.log(this);
 }
-
-export let GeneratorInstance = new GeneratorClass();

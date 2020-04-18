@@ -15,10 +15,12 @@
 #grid {
     border-radius: 10px;
     margin: 2px;
-    padding: 1px;
+    padding: 10px;
     box-shadow: 2px 2px 5px 5px rgba(24, 24, 24, 0.7);
-    background: rgb(85, 84, 84);
+    background: rgb(148,107,107);
+    background: linear-gradient(0deg, rgba(148,107,107,1) 0%, rgba(255,124,72,1) 100%);
     width: 450px;
+    margin-bottom: 20px;
 }
 
 @import "./square";
