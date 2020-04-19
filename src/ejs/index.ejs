@@ -21,17 +21,23 @@
     <!-- App Title and Debug Mode Toggle -->
     <header>
         <h1 class="Application__Title"> Sudoku </h1>
-        <button class="control options toggle" onclick="onDebugButtonClick()"> Enter Debug Mode </button>
+        <!-- <button class="control options toggle" onclick="onDebugButtonClick()"> Enter Debug Mode </button> -->
     </header>
 
 
     <!-- Generated in Javascript (Renderer.js) -->
     <main>
+        <p id="wrong"> You havent found the correct answers yet . . . </p>
+        <div id="correct"> 
+            <h1 class="correct__title"> Successfully solved Puzzle </h1>
+            <p class="correct__text"> Refresh page to try again with a new one </p>
+        </div>
         <div id="grid" class="grid"> </div>
+        <button class="solution" onclick="onSolutionButtonClick()"> Check Solution </button>
     </main>
 
 
-    <!-- Two Debug Mode Options -->
+    <!-- Two Debug Mode Options
     <footer>
         <div id="debugMenu">
             <button class="control options digits" onclick="onDebugButtonClick('digitsAll')"> Visualize all Same Digits </button>
@@ -51,6 +57,7 @@
             </div>
         </div>
     </footer>
+     -->
 
 
     <!-- Imports Scripts -->

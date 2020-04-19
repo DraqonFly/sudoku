@@ -3,27 +3,56 @@ import { RendererInstance } from "./Renderer";
 class SolverClass {
     squares;
     fields;
+    tokenfields;
 
     constructor(squares, fields) {
         this.squares = squares;
         this.fields = fields;
+        this.tokenfields = new Array();
     }
 
     startSolving = () => {
+
+        for(let i=0; i<9; i++) {
         console.log("%c[Solver] Remove Values and Solve Puzzle", "color: rgb(160, 180, 255)")
         let position = this.getRandomPosition();
+
         let field = this.squares[position.squareID].ownFields[position.fieldID];
-        let square = this.squares[position.squareID];
+            if(field) {
+            let square = this.squares[position.squareID];
 
-        console.log(position);
-        console.log(this.squares[position.squareID].ownFields[position.fieldID])
+            console.log(position);
+            console.log(this.squares[position.squareID].ownFields[position.fieldID])
 
-        field.transformField(false);
+            field.transformField(false);
 
-        this.bruteForceEmptyField(field, square);
-
+            this.bruteForceEmptyField(field, square);
+            }
+        }
         // TODO: if only one possible answer, replace field with textbox
         
+    }
+
+    checkSolution = () => {
+        console.log("checking solution");
+        this.toString();
+        let doesntmatch = false;
+
+        this.fields.forEach(field => {
+            if(field.originalValue !== field.value) {
+                doesntmatch = true;
+            }
+        })
+
+        if(doesntmatch) {
+            console.error("wrong answer")
+            document.getElementById("wrong").style.display = "block";
+            document.getElementById("correct").style.display = "none";
+        } else {
+            console.log("%csolved sudoku correctly", "color: green")
+            document.getElementById("wrong").style.display = "none";
+            document.getElementById("correct").style.display = "block";
+        }
     }
 
     bruteForceEmptyField = (field, square) => {
@@ -35,7 +64,10 @@ class SolverClass {
         let connectedFields = this.getConnectedDigits(field, square);
         console.log(connectedFields)
         
-        for(let i=0; i<8; i++) allGivenValues.push(connectedFields.hor[i].value, connectedFields.ver[i].value,  connectedFields.square[i].value);
+        for(let i=0; i<8; i++){
+            if(connectedFields.hor[i].value !== undefined) allGivenValues.push(connectedFields.hor[i].value)
+            if(connectedFields.ver[i].value !== undefined) allGivenValues.push(connectedFields.ver[i].value)
+        }
         allGivenValues = allGivenValues.filter((v,i) => allGivenValues.indexOf(v) === i).sort();
         
         console.log(allGivenValues)
@@ -45,6 +77,7 @@ class SolverClass {
             let found = allGivenValues.indexOf(value);
             if(found === -1) {
                 console.log("found number to insert: "+ value)
+                this.tokenfields.push(this.createSolution(field, value));
             } 
         }) 
         //field.transformField(true);
@@ -80,7 +113,7 @@ class SolverClass {
     }
 
 
-    toString = () => console.log(JSON.parse(JSON.stringify(this)))
+    toString = () => console.log(this)
 
     getRandomPosition = () => {
         let squareID = this.getRandomNumber(9);

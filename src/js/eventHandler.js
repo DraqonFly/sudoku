@@ -1,4 +1,5 @@
 import {VisualizerInstance} from "./classes/helper/Visualizer";
+import {SolverInstance} from "./classes/core/Solver";
 
 class EventHandlerClass
 {
@@ -12,6 +13,10 @@ class EventHandlerClass
             case "digitsAll": VisualizerInstance.visualizeAllSameDigits(); break;
             default: this.changeButtonToggle(window.event.target)
         }
+    }
+
+    onSolutionButtonClick = () => {
+        SolverInstance.checkSolution();
     }
 
     changeButtonToggle = (elem) => { 

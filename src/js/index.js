@@ -10,6 +10,9 @@ RendererInstance.renderGrid();
 window.onDebugButtonClick = (param) => {
     EventHandlerInstance.onDebugButtonClick(param);
 }
+window.onSolutionButtonClick = () => {
+    EventHandlerInstance.onSolutionButtonClick();
+}
 
 VisualizerInstance.setClasses(RendererInstance.squares, RendererInstance.fields);
 
