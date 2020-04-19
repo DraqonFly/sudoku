@@ -14,7 +14,7 @@ class VisualizerClass
     setClasses = (squareClasses, fieldClasses) => {
         this.squareClasses = squareClasses;
         this.fieldClasses = fieldClasses;
-        this.intervalDuration = 1000;
+        this.intervalDuration = 5000;
     }
 
     visualizeAllSameDigits = () => {

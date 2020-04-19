@@ -35,20 +35,40 @@ export class GeneratorClass {
         return valueMap;
     }
 
+    getLast3x3Map = (squareCount) => {
+        let valueMap = new Array();
+        for(let fieldID=0; fieldID<9; fieldID++) {
+            valueMap.push(this.fields[(squareCount * 9) + fieldID].value);
+        }
+        return valueMap;
+    }
+
 
     iterateSquares = (valueMap) => {
         for(let squareCount=0; squareCount<9; squareCount++){
             console.log("\niterating new square");
+            if(squareCount > 1) {
+                valueMap = this.getLast3x3Map(squareCount-1);
+            }
+
+            if(squareCount >= 1)
             this.iterateFields(squareCount, valueMap);
 
         }
     }
 
     iterateFields = (squareCount, valueMap) => {
+        console.log("%c"+(squareCount % 3 === 0), "color: green")
+        let verticalShift = squareCount % 3 === 0;
         for(let fieldCount=0; fieldCount<9; fieldCount++){
             console.log("%c[hmm] "+(valueMap[(((squareCount * 9) + (fieldCount + 3)) % 9)]), "color: orange")
             let globalFieldCount = (squareCount * 9) + fieldCount;
             let fieldClass = this.fields[globalFieldCount];
+            if(verticalShift) {
+                fieldClass.updateValue(valueMap[((((squareCount * 9) + (fieldCount + 3) + 1)) % 9)])
+            } else {
+                fieldClass.updateValue(valueMap[(((squareCount * 9) + (fieldCount + 3)) % 9)])
+            }
             console.log("iterating new field in square-"+squareCount)
             console.log(fieldClass);
         }
