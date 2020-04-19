@@ -1,6 +1,5 @@
 import {SquareClass} from "../dom/Square.js";
 import {FieldClass} from "../dom/Field.js";
-import {GridInstance} from "../dom/Grid";
 
 class RendererClass 
 {
@@ -14,6 +13,7 @@ class RendererClass
     }
 
     renderGrid = () => {
+        console.log("%c[Renderer] Rendering Grid, Squares & Fields", "color: rgb(160, 180, 255)")
         let squareJSON = {
             nodeName: "div",
             classes: ["square", "grid"],
@@ -27,15 +27,18 @@ class RendererClass
         for(let squareCount=0; squareCount<9; squareCount++){
             let squareElement = this.createElement(document.getElementById("grid"), squareJSON);
             this.getSquarePosition(squareCount);
-            this.squares.push(new SquareClass(squareElement, squareCount, document.getElementById("grid"), this.squares, this.fields));
+            this.squares.push(new SquareClass(squareElement, squareCount, this.fields));
 
             for(let fieldCount=0; fieldCount<9; fieldCount++) {
                 let fieldElement = this.createElement(document.getElementsByClassName("square")[squareCount], fieldJSON);
-                this.fields.push(new FieldClass(fieldElement, fieldCount, document.getElementById("grid"), squareElement, this.squares, this.fields))
+                this.fields.push(new FieldClass(fieldElement, fieldCount, squareCount))
             }
+            this.squares[this.squares.length - 1].getOwnFields(this.fields);
         }
-        GridInstance.squareClasses = this.squares;
-        GridInstance.fieldClasses = this.fields;
+
+        for(let squareCount=0; squareCount < 9; squareCount++) {
+            this.squares[squareCount].setNeighbourSquares(this.squares);
+        }
     }
 
     getSquarePosition = (squareCount) => {
@@ -56,6 +59,7 @@ class RendererClass
         let element = document.createElement(elementJSON.nodeName);
         elementJSON.textNode ? this.createNode(element, elementJSON.textNode) : null;
         elementJSON.classes ? this.appendClasses(element, elementJSON.classes) : null;
+        elementJSON.maxlength ? element.maxLength = elementJSON.maxlength : null;
         this.appendChild(parentElement, element);
         return element;
     }

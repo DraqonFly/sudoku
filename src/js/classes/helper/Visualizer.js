@@ -8,13 +8,13 @@ class VisualizerClass
 
     constructor()
     {
-        console.log("Constructed Visualizer");
+
     }
 
     setClasses = (squareClasses, fieldClasses) => {
         this.squareClasses = squareClasses;
         this.fieldClasses = fieldClasses;
-        this.intervalDuration = 5000;
+        this.intervalDuration = 1000;
     }
 
     visualizeAllSameDigits = () => {

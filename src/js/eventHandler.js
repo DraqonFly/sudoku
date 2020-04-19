@@ -3,7 +3,7 @@ import {VisualizerInstance} from "./classes/helper/Visualizer";
 class EventHandlerClass
 {
     constructor() {
-        console.log("Event Handler constructed");
+
     }
 
     onDebugButtonClick = (param) => {
