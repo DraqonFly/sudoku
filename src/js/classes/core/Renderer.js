@@ -6,8 +6,7 @@ class RendererClass
     squares;
     fields;
 
-    constructor()
-    {
+    constructor() {
         this.squares = new Array();
         this.fields = new Array();
     }
@@ -23,7 +22,6 @@ class RendererClass
             textNode: "0",
             classes: ["field"],
         }
-
         for(let squareCount=0; squareCount<9; squareCount++){
             let squareElement = this.createElement(document.getElementById("grid"), squareJSON);
             this.getSquarePosition(squareCount);
@@ -35,10 +33,7 @@ class RendererClass
             }
             this.squares[this.squares.length - 1].getOwnFields(this.fields);
         }
-
-        for(let squareCount=0; squareCount < 9; squareCount++) {
-            this.squares[squareCount].setNeighbourSquares(this.squares);
-        }
+        for(let squareCount=0; squareCount < 9; squareCount++) this.squares[squareCount].setNeighbourSquares(this.squares);
     }
 
     getSquarePosition = (squareCount) => {
@@ -69,14 +64,10 @@ class RendererClass
         this.appendChild(element, textNode);
     }
 
-    appendClasses = (element, classes) => {
-        element.classList = classes.join(" ");
-    }
-
-    appendChild = (parent, child) => {
-        parent.appendChild(child);
-    }
-
+    appendClasses = (element, classes) => element.classList = classes.join(" ");
+    
+    appendChild = (parent, child) => parent.appendChild(child);
+    
     toString = () => {
         console.log(JSON.parse(JSON.stringify(this)));
         return JSON.parse(JSON.stringify(this));

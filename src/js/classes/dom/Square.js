@@ -2,12 +2,12 @@ import {RendererInstance} from "../core/Renderer";
 
 export class SquareClass
 {
-    squareID; // Index (iteration count) of current square as integer
+    squareID;
     ownFields;
     ownNeighbours;
-    horPosition; // Rowcount (% 3) as integer
-    verPosition; // Columncount (/ 3) as integer (Math.Floor)
-    squareElem; // DOM element this square class is attached to
+    horPosition;
+    verPosition;
+    squareElem;
 
     constructor(squareElem, squareID) {
         this.squareElem = squareElem;
@@ -19,17 +19,14 @@ export class SquareClass
     
     getOwnFields = (fieldsParam) => {
         let fields = new Array();
-        for(let fieldID = 0; fieldID < 9; fieldID++) {
-            fields.push(fieldsParam[(this.squareID * 9) + fieldID])
-        }
+        for(let fieldID = 0; fieldID < 9; fieldID++)  fields.push(fieldsParam[(this.squareID * 9) + fieldID])
         this.ownFields = fields;
     }
     
     setNeighbourSquares = (squares) => {
         squares.forEach(squareClass => {
             if(squareClass.horPosition === this.horPosition || squareClass.verPosition === this.verPosition) {
-                if((squareClass.horPosition === this.horPosition && squareClass.verPosition === this.verPosition) === false) 
-                this.ownNeighbours.push(squareClass)
+                if((squareClass.horPosition === this.horPosition && squareClass.verPosition === this.verPosition) === false) this.ownNeighbours.push(squareClass)
             }
         })
         this.toString();        

@@ -3,9 +3,7 @@ import {SolverInstance} from "./classes/core/Solver";
 
 class EventHandlerClass
 {
-    constructor() {
-
-    }
+    constructor() { }
 
     onDebugButtonClick = (param) => {
         switch(param) {
@@ -13,10 +11,6 @@ class EventHandlerClass
             case "digitsAll": VisualizerInstance.visualizeAllSameDigits(); break;
             default: this.changeButtonToggle(window.event.target)
         }
-    }
-
-    onSolutionButtonClick = () => {
-        SolverInstance.checkSolution();
     }
 
     changeButtonToggle = (elem) => { 
@@ -31,11 +25,10 @@ class EventHandlerClass
             document.getElementById("debugMenu").style.display = "none";
         }
     }
+    
+    toString = () => console.log(JSON.parse(JSON.stringify(this)));
 
-    toString = () => {
-        console.log(JSON.parse(JSON.stringify(this)));
-        return JSON.parse(JSON.stringify(this));
-    }
+    onSolutionButtonClick = () => SolverInstance.checkSolution();
 }
 
 export let EventHandlerInstance = new EventHandlerClass();

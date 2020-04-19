@@ -6,17 +6,11 @@ import {EventHandlerInstance} from "./eventHandler";
 import {VisualizerInstance} from "./classes/helper/Visualizer";
 
 RendererInstance.renderGrid();
-
-window.onDebugButtonClick = (param) => {
-    EventHandlerInstance.onDebugButtonClick(param);
-}
-window.onSolutionButtonClick = () => {
-    EventHandlerInstance.onSolutionButtonClick();
-}
-
 VisualizerInstance.setClasses(RendererInstance.squares, RendererInstance.fields);
 
 let GeneratorInstance = new GeneratorClass(RendererInstance.squares, RendererInstance.fields)
 GeneratorInstance.startGeneration(); 
-
 SolverInstance.startSolving();
+
+window.onDebugButtonClick = (param) => EventHandlerInstance.onDebugButtonClick(param);
+window.onSolutionButtonClick = () => EventHandlerInstance.onSolutionButtonClick();
